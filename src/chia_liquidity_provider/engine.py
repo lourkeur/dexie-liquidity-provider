@@ -68,8 +68,10 @@ class Engine:
         base_asset_amts = [-delta for delta, _ in position.grid.initial_orders(p_init) if delta < 0]
         quote_asset_amts = [-delta for _, delta in position.grid.initial_orders(p_init) if delta < 0]
 
-        await self._split_coins(base_asset, base_asset_wallet_id, base_asset_amts)
-        await self._split_coins(quote_asset, quote_asset_wallet_id, quote_asset_amts)
+        await asyncio.gather(
+            self._split_coins(base_asset, base_asset_wallet_id, base_asset_amts),
+            self._split_coins(quote_asset, quote_asset_wallet_id, quote_asset_amts),
+        )
         await self._create_trades(p_init)
         await self.db.conn.commit()
         return self
