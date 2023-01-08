@@ -32,14 +32,14 @@ def main():
 @click.argument("p_init", type=Decimal, default=0)
 def show_init(x_max, p_min, p_max, p_init) -> None:
     """
-    x_max: Total liquidity depth [XCH]"
-    p_min: Minimum price [USD/XCH]
-    p_max: Maximum price [USD/XCH]
+    x_max: Total liquidity depth [USD]"
+    p_min: Minimum price [XCH/USD]
+    p_max: Maximum price [XCH/USD]
     """
-    base = Asset.XCH
-    quote = Asset.USDS
+    base = Asset.USDS
+    quote = Asset.XCH
     x_max = x_max * base
-    Δx = ".1" * base
+    Δx = 1 * base
     p_min = p_min * quote / (1 * base)
     p_max = p_max * quote / (1 * base)
     p_init = p_init * quote / (1 * base)
@@ -71,14 +71,14 @@ def show_init(x_max, p_min, p_max, p_init) -> None:
 @click.argument("p_init", type=Decimal, default=0)
 def init(fingerprint: int, x_max, p_min, p_max, p_init) -> None:
     """
-    x_max: Total liquidity depth [XCH]"
-    p_min: Minimum price [USD/XCH]
-    p_max: Maximum price [USD/XCH]
+    x_max: Total liquidity depth [USD]"
+    p_min: Minimum price [XCH/USD]
+    p_max: Maximum price [XCH/USD]
     """
-    base = Asset.XCH
-    quote = Asset.USDS
+    base = Asset.USDS
+    quote = Asset.XCH
     x_max = x_max * base
-    Δx = ".1" * base
+    Δx = 1 * base
     p_min = p_min * quote / (1 * base)
     p_max = p_max * quote / (1 * base)
     p_init = p_init * quote / (1 * base)
